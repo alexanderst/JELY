@@ -17,7 +17,26 @@
 package jely.io;
 
 import jely.Ecg;
+import jely.LeadConfiguration;
+import ru.mipt.edf.EDFHeader;
+import ru.mipt.edf.EDFParser;
+import ru.mipt.edf.EDFParserResult;
+
+import java.io.*;
+import java.sql.Date;
 
 public class EdfEcgFile extends Ecg {
-    // TODO: Import EDF and EDF+ files.
+
+    public EdfEcgFile(String pathToEdfFile) {
+        leadInfo = new LeadConfiguration();
+        try (InputStream is = new BufferedInputStream(new FileInputStream(new File(pathToEdfFile)))) {
+            EDFParserResult result = EDFParser.parseEDF(is);
+            EDFHeader header = result.getHeader();
+            firstSampleDate = Date.valueOf(header.getStartDate());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -38,6 +38,12 @@
             <artifactId>jfreechart</artifactId>
             <version>${jfreechart.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>ru.mipt.edf</groupId>
+            <artifactId>edf4j</artifactId>
+            <version>1.0b</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/edf4j-1.0b.jar</systemPath>
+        </dependency>
     </dependencies>
 </project>
