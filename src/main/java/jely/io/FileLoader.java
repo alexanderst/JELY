@@ -61,6 +61,8 @@ public class FileLoader {
                 ecg = new CsvEcgFile(path);
             } else if (path.endsWith(".txt")) {
                 ecg = new CsvEcgFile(path);
+            } else if (path.endsWith(".edf")) {
+                ecg = new EdfEcgFile(path);
             } else {
                 // try our luck with the BinaryEcgFile
                 try {
